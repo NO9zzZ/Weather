@@ -1,7 +1,6 @@
 package com.wyz.weather.dialog
 
-import android.app.Activity
-import android.content.DialogInterface
+import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wyz.weather.R
@@ -18,10 +17,9 @@ import com.wyz.weather.util.GlideUtil
  * @describe
  * @e-mail:646888521@qq.com
  */
-class ForePopUpWindow(context: Activity, weatherForeBean: WeatherForeBean, mainInfo: WeatherBean) :
+class ForePopUpWindow(context: Context, weatherForeBean: WeatherForeBean, mainInfo: WeatherBean) :
     BaseCenterDialog(context) {
     lateinit var mBinding: PopBagBinding
-    private val context: Activity
     private var mWeatherForeAdapter: WeatherForeAdapter? = null
     private var result: MutableList<WeatherForeCastsBean> = mutableListOf()
     private fun initRecyclerView() {
@@ -54,7 +52,7 @@ class ForePopUpWindow(context: Activity, weatherForeBean: WeatherForeBean, mainI
 
 
     init {
-        this.context = context
+//        this.context = context
         mBinding = PopBagBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
         mBinding.ivBg.setImageResource(R.drawable.sunnybg)

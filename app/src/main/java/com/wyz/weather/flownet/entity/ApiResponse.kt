@@ -36,7 +36,7 @@ open class ApiResponse<T>(
 
 }
 
-data class ApiSuccessResponse<T>(val response: T) : ApiResponse<T>(forecasts = response)
+data class ApiSuccessResponse<T>(val response: T) : ApiResponse<T>(weatherData = response)
 
 class ApiEmptyResponse<T> : ApiResponse<T>()
 

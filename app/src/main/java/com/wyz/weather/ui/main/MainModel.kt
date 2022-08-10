@@ -10,8 +10,11 @@ import com.wyz.weather.bean.WeatherBean
  */
 class MainModel {
     var weatherBeanList: MutableList<WeatherBean>
+    var cities: Array<String>
 
     init {
         weatherBeanList = mutableListOf()
+        cities = arrayOf()
     }
+
 }

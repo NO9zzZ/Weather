@@ -1,6 +1,7 @@
 package com.wyz.weather
 
 import android.app.Application
+import com.wyz.weather.ui.main.MainModel
 import com.wyz.weather.ui.splash.SplashModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
@@ -38,15 +39,10 @@ class MyApplication : Application() {
              */
             androidFileProperties("koin.properties")
             modules(
-                /*
-                    添加Module对象
-                 */
                 module {
-                    /*
-                        实例工厂，每次获取都是新的实例对象
-                     */
-//                    factory { FactoryModel() }
+//                    factory { SplashModel() }
                     single { SplashModel() }
+                    single { MainModel() }
 
                 }
             )
