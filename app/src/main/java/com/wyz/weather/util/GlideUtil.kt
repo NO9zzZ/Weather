@@ -56,18 +56,6 @@ object GlideUtil {
         return null
     }
 
-    fun loadDrawable(context: Context?, url: String?, imageView: ImageView) {
-        Observable.create { emitter ->
-            val drawable = getDrawableGlide(context, url)
-            emitter.onNext(drawable!!)
-            emitter.onComplete()
-        }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ drawable -> imageView.background = drawable }
-            ) { }
-    }
-
     /**
      * @param context
      * @param resId

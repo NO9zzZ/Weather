@@ -18,7 +18,8 @@ import com.wyz.weather.util.GlideUtil
  * @describe
  * @e-mail:646888521@qq.com
  */
-class ForePopUpWindow(context: Activity,weatherForeBean: WeatherForeBean,mainInfo: WeatherBean) : BaseCenterDialog(context) {
+class ForePopUpWindow(context: Activity, weatherForeBean: WeatherForeBean, mainInfo: WeatherBean) :
+    BaseCenterDialog(context) {
     lateinit var mBinding: PopBagBinding
     private val context: Activity
     private var mWeatherForeAdapter: WeatherForeAdapter? = null
@@ -36,7 +37,7 @@ class ForePopUpWindow(context: Activity,weatherForeBean: WeatherForeBean,mainInf
         })
     }
 
-    private fun initView(weatherForeBean: WeatherForeBean,mainInfo: WeatherBean) {
+    private fun initView(weatherForeBean: WeatherForeBean, mainInfo: WeatherBean) {
         result.clear()
         result.addAll(weatherForeBean.getCasts()!!)
         mWeatherForeAdapter?.notifyDataSetChanged()
@@ -44,9 +45,10 @@ class ForePopUpWindow(context: Activity,weatherForeBean: WeatherForeBean,mainInf
 
         mBinding.tvCity.text = mainInfo.getCity()
         var today = weatherForeBean.getCasts()?.get(0)
-        mBinding.tvHighlow.text = "最低"+ today?.getDaytemp()+"°" + "最高"+ today?.getNighttemp()+"°"
+        mBinding.tvHighlow.text =
+            "最低" + today?.getDaytemp() + "°" + "最高" + today?.getNighttemp() + "°"
         mBinding.tvWeather.text = mainInfo.getWeather()
-        mBinding.tvTemp.text = mainInfo.getTemperature()+"°"
+        mBinding.tvTemp.text = mainInfo.getTemperature() + "°"
 
     }
 
@@ -56,18 +58,18 @@ class ForePopUpWindow(context: Activity,weatherForeBean: WeatherForeBean,mainInf
         mBinding = PopBagBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
         mBinding.ivBg.setImageResource(R.drawable.sunnybg)
-        if(mainInfo.getWeather()?.contains("阴")!!){
+        if (mainInfo.getWeather()?.contains("阴")!!) {
             mBinding.ivBg.setImageResource(R.drawable.cloudybg)
-        }else if(mainInfo.getWeather()?.contains("云")!!){
+        } else if (mainInfo.getWeather()?.contains("云")!!) {
             mBinding.ivBg.setImageResource(R.drawable.cloudbg)
-        }else if(mainInfo.getWeather()?.contains("雾")!!){
+        } else if (mainInfo.getWeather()?.contains("雾")!!) {
             mBinding.ivBg.setImageResource(R.drawable.smogbg)
-        }else if(mainInfo.getWeather()?.contains("雨")!!){
-            GlideUtil.loadItemBack(context, R.drawable.rainbg,mBinding.ivBg)
-        }else if(mainInfo.getWeather()?.contains("雪")!!){
-            GlideUtil.loadItemBack(context, R.drawable.snowbg,mBinding.ivBg)
+        } else if (mainInfo.getWeather()?.contains("雨")!!) {
+            GlideUtil.loadItemBack(context, R.drawable.rainbg, mBinding.ivBg)
+        } else if (mainInfo.getWeather()?.contains("雪")!!) {
+            GlideUtil.loadItemBack(context, R.drawable.snowbg, mBinding.ivBg)
         }
         initRecyclerView()
-        initView(weatherForeBean,mainInfo)
+        initView(weatherForeBean, mainInfo)
     }
 }

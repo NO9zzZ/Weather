@@ -16,9 +16,7 @@ object NetworkUtil {
         val context = activity.applicationContext
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (connectivityManager == null) {
-            return false
-        } else {
+
             val networkInfo = connectivityManager.allNetworkInfo
             if (networkInfo != null && networkInfo.size > 0) {
                 for (i in networkInfo.indices) {
@@ -27,7 +25,6 @@ object NetworkUtil {
                     }
                 }
             }
-        }
         return false
     }
 }

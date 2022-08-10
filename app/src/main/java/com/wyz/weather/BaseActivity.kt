@@ -1,5 +1,6 @@
 package com.wyz.weather
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
@@ -21,6 +22,7 @@ import com.wyz.weather.dialog.LoadingDialog
 import com.wyz.weather.util.NetworkUtil
 import com.wyz.weather.util.ToastUtil
 import com.wyz.weather.view.BaseView
+import com.wyz.weather.view.IUiView
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.ObservableTransformer
@@ -35,7 +37,7 @@ import io.reactivex.schedulers.Schedulers
  * @describe
  * @e-mail:646888521@qq.com
  */
-abstract class BaseActivity : AppCompatActivity(),BaseView {
+abstract class BaseActivity : AppCompatActivity(),BaseView,IUiView {
     var pd: LoadingDialog? = null
     var mObservableTransformer: ObservableTransformer<*, *>? = null
     private var showLoading = true
@@ -195,4 +197,15 @@ abstract class BaseActivity : AppCompatActivity(),BaseView {
         )
     }
 
+    private var progressDialog: ProgressDialog? = null
+
+    override fun showLoading() {
+        if (progressDialog == null)
+            progressDialog = ProgressDialog(this)
+        progressDialog?.show()
+    }
+
+    override fun dismissLoading() {
+        progressDialog?.takeIf { it.isShowing }?.dismiss()
+    }
 }
