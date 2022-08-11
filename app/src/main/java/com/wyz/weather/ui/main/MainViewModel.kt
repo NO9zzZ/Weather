@@ -6,9 +6,6 @@ import com.wyz.weather.bean.WeatherBean
 import com.wyz.weather.bean.WeatherForeBean
 import com.wyz.weather.flownet.MyMainRepository
 import com.wyz.weather.flownet.entity.ApiResponse
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -18,7 +15,9 @@ import org.koin.core.component.inject
  * @describe
  * @e-mail:ywang450@volvocars.com
  */
-class MainViewModel(application: Application) : AndroidViewModel(application), KoinComponent {
+class MainViewModel(application: Application) : AndroidViewModel(application),
+    KoinComponent {
+
     private val repository by lazy { MyMainRepository() }
     private val mModel: MainModel by inject()
 
@@ -28,16 +27,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application), K
         mModel.cities = cities
     }
 
-    private val _rvState =
-        MutableStateFlow<ApiResponse<MutableList<WeatherForeBean>>>(ApiResponse())
-    val rvState: StateFlow<ApiResponse<MutableList<WeatherForeBean>>> = _rvState.asStateFlow()
+//    private val _rvState =
+//        MutableStateFlow<ApiResponse<MutableList<WeatherForeBean>>>(ApiResponse())
+//    val rvState: StateFlow<ApiResponse<MutableList<WeatherForeBean>>> = _rvState.asStateFlow()
 
     suspend fun getWeatherFore(city: String): ApiResponse<MutableList<WeatherForeBean>> {
         return repository.getWeatherFore(city)
     }
 
-    suspend fun getWeather(city: String): ApiResponse<MutableList<WeatherBean>> {
-        return repository.getWeather(city)
+    suspend fun getWeather(i: Int): ApiResponse<MutableList<WeatherBean>> {
+        return repository.getWeather(mModel.cities[i])
     }
 
     //根据cities排序mViewModel.getList()

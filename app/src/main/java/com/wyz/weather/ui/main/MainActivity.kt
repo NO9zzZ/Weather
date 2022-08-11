@@ -51,7 +51,7 @@ class MainActivity : BaseActivity() {
         //获取天气信息，可用于刷新逻辑
         mViewModel.getList()?.clear()
         for (i in 0 until mViewModel.getCities().size) {
-            getWeather(mViewModel.getCities()[i])
+            getWeather(i)
 //            initWeather(cities[i])
         }
     }
@@ -83,9 +83,9 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun getWeather(city: String) {
+    private fun getWeather(i: Int) {
         launchAndCollect({
-            mViewModel.getWeather(city)
+            mViewModel.getWeather(i)
         }) {
             onSuccess = {
                 mViewModel.getList()?.add(it?.get(0)!!)
